@@ -40,7 +40,7 @@ const movePiece = (startStack, endStack) => {
   endStack = stacks[endStack]
 
   let fromMove = startStack.pop()
-  endStack.psuh(fromMove);
+  endStack.push(fromMove);
 }
 const letter1 = (startStack, endStack) => {
   if((startStack === 'a' || startStack === 'b' || startStack === 'c') && (endStack === 'a' || endStack === 'b' || endStack === 'c')){
@@ -51,37 +51,28 @@ const letter1 = (startStack, endStack) => {
 // Before you move, should you check if the move it actually allowed? Should 3 be able to be stacked on 2
 const isLegal = (startStack, endStack) => {
  // Your code here   
+ //console.log(stacks[startStack]);
+ let startStackArr = stacks[startStack];
+ let endStackArr = stacks[endStack];
+
+ let lastStart = startStackArr[startStackArr.length-1];
+ let lastEnd = endStackArr[endStackArr.length-1];
+
+ if(lastStart < lastEnd){
+   return true
+ }else if(lastStart > lastEnd){
+   return false
+ }
+ 
+ //let lastStartStack = stacks.startStack[stacks.startStack];  
   const goodLetter = letter1(startStack, endStack)
-  if(goodLetter){
+  if(!goodLetter){
     console.log('wrong')
     return false
-  }
+  }else return true
 }
 
-startStack = stacks[startStack];
 
-let startR = startStack.length
-
-let indexR = startR -1
-
-let valueStartStack = startStack[indexR]
-console.log(typeof(valueSTartSTack));
-
-endSTack = stacks[endStacks]
-//console.log(endStack.length);
-
-let endK = endStack.length
-let indexEndK = endK -1
-
-let valueEndStack = endStack[indexEndK]
-console.log(valueEndStack);
-
-if(valueEndStack < valueEndStack || valueEndStack === unidefined){
-  return true
-}else if (valueStartStack > valueEndStack){
-  console.log('not a legal move')
-  return false
-}
 
 
 
